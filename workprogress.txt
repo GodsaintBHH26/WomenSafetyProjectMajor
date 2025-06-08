@@ -3,7 +3,11 @@
 --------------+
 *Web version* |---> 
 --------------+
-
+    1. Intergrated the UI and main components for the map, since this project revolves around the map.
+    2. Added the .env file to store all the neccessary API keys for this project. 
+    3. The google maps API is stored in the .env file with the name 'VITE_GOOGLE_MAPS_API_KEY'.
+    4. Added POLYGON to mark safe and unsafe areas in an area on the map.
+    5. Will also add POLYLINE to mark specific routes between two points on the map. (This feature will be use to set specific routes to avoid unsafe locations)
 
 ------------------------------------------------------------------------------------------------------------------
 
