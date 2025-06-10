@@ -2,7 +2,7 @@ import { GoogleMap, Polygon } from "@react-google-maps/api";
 import { useEffect, useState } from "react";
 
 const containerStyle = {
-  width: "700px",
+  width: "900px",
   height: "500px",
 };
 

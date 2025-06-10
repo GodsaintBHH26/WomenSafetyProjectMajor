@@ -6,7 +6,7 @@ function NavBar() {
     <>
       <div className="bg-black w-screen h-16 flex justify-between items-center p-5 ">
         <Link to='/'>
-          <h1 className="text-3xl font-semibold ">NIRVAYA</h1>
+          <h1 className="text-3xl font-semibold ">NIRVAY</h1>
         </Link>
 
         <div className="flex gap-5 items-center font-semibold">

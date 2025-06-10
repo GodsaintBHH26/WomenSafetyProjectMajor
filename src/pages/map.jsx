@@ -1,12 +1,14 @@
-import React from 'react'
-import MapComponent from '../components/map-component'
+import React from "react";
+import MapComponent from "../components/map-component";
 
 function Map() {
   return (
     <>
-    <MapComponent/>
+      <div className="w-full h-[36rem] flex justify-center items-center">
+        <MapComponent />
+      </div>
     </>
-  )
+  );
 }
 
-export default Map
+export default Map;

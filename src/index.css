@@ -30,6 +30,8 @@
 
 @theme{
   --animate-texthighlight: texthighlight 4s ease-in-out infinite;
+  --animate-shadowgone: shadowgone 5s ease-in-out infinite;
+  --animate-shadowmove: shadowmove 5s ease-in-out infinite;
 
   @keyframes texthighlight {
     50%{
@@ -40,13 +42,40 @@
       transform: scaleX(1)
     }
   }
+
+  @keyframes shadowmove {
+    0%{
+      filter: drop-shadow(-15px 10px 12px black);
+    }
+    25%{
+      filter: drop-shadow(5px -20px 12px black);
+    }
+    50%{
+      filter: drop-shadow(20px 15px 12px black);
+    }
+    7%%{
+      filter: drop-shadow(5px -20px 12px black);
+    }
+    100%{
+      filter: drop-shadow(-15px 10px 12px black);
+    }
+  }
+
+  @keyframes shadowgone {
+    50%{
+      filter: drop-shadow(0 0 20px white);
+    }
+    100%{
+      filter: drop-shadow(0 0 0);
+    }
+  }
 }
 
 @layer components{
   .btn-hollow-fill{
-    @apply outline-2 outline-blue-500 text-blue-500 hover:text-white bg-white hover:bg-blue-500 hover:bg-linear-120 p-2 rounded-md px-5;
+    @apply outline-2 outline-amber-600 text-amber-600 hover:text-white bg-white hover:bg-amber-600 hover:bg-linear-120 p-2 rounded-md px-5;
   }
   .btn-fill-hollow{
-    @apply bg-blue-500 hover:bg-white hover:text-blue-500 hover:outline-2 hover:outline-blue-500 p-2 rounded-md px-5;
+    @apply bg-amber-600 hover:bg-white hover:text-amber-600 hover:outline-2 hover:outline-amber-600 p-2 rounded-md px-5;
   }
 }
