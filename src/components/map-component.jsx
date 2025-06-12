@@ -1,5 +1,6 @@
-import { GoogleMap, Polygon } from "@react-google-maps/api";
+import { GoogleMap, Polygon, Polyline } from "@react-google-maps/api";
 import { useEffect, useState } from "react";
+import { greenArea, redArea } from "../data/MapData";
 
 const containerStyle = {
   width: "900px",
@@ -11,39 +12,62 @@ const center = {
   lng: 86.97058158926599,
 };
 
-const redArea = [
-  { lat: 22.5726, lng: 88.3639 },
-  { lat: 22.5726, lng: 88.3739 },
-  { lat: 22.5626, lng: 88.3739 },
-  { lat: 22.5626, lng: 88.3639 },
-  { lat: 22.5626, lng: 88.2624 },
-];
+function MapComponent({ mde }) {
+  const [points, setPoints] = useState([]);
 
-function MapComponent() {
+  const handleRoute = (click) => {
+    if (mde === "route") {
+      const lat = click.latLng.lat();
+      const lng = click.latLng.lng();
+      setPoints((prev) => [...prev, { lat, lng }]);
+    }
+  };
+
+  useEffect(() => {
+    if (mde !== "route") {
+      setPoints([]);
+    }
+  }, [mde]);
 
   return (
     <>
       <div>
-        
-          <GoogleMap
-            mapContainerStyle={containerStyle}
-            center={center}
-            zoom={13}
-          >
-            <Polygon
-              paths={redArea}
-              options={{
-                fillColor: "red",
-                fillOpacity: 0.5,
-                strokeColor: "red",
-                strokeOpacity: 0.7,
-                strokeWeight: 2,
-              }}
-            />
+        <GoogleMap key={mde} mapContainerStyle={containerStyle} center={center} zoom={14} onClick={handleRoute}>
+          {mde === "area" && (redArea || greenArea) && (
+            <>
+              {redArea && (<Polygon
+                paths={redArea}
+                options={{
+                  fillColor: "red",
+                  fillOpacity: 0.5,
+                  strokeColor: "red",
+                  strokeOpacity: 0.7,
+                  strokeWeight: 2,
+                }}
+              />)}
 
-            <Polygon />
-          </GoogleMap>
-        
+              {greenArea && (<Polygon
+                paths={greenArea}
+                options={{
+                  fillColor: "green",
+                  fillOpacity: 0.6,
+                  strokeColor: "blue",
+                  strokeOpacity: 0.8,
+                  strokeWeight: 2,
+                }}
+              />)}
+            </>
+          )}
+
+          {(mde === 'route') && (points.length > 1) && (<Polyline
+            path={points}
+            options={{
+              strokeColor: "yellow",
+              geodesic: true,
+              strokeWeight: 4,
+            }}
+          />)}
+        </GoogleMap>
       </div>
     </>
   );

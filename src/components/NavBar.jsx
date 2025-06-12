@@ -9,7 +9,7 @@ function NavBar() {
           <h1 className="text-3xl font-semibold ">NIRVAY</h1>
         </Link>
 
-        <div className="flex gap-5 items-center font-semibold">
+        <div className="flex gap-10 items-center font-semibold">
           <Link to="/maps">Maps</Link>
           <Link to='/contact'>Contacts</Link>
           <Link to='/login'><button className="hover:bg-amber-600 duration-200 px-2 py-1 rounded focus:outline-2 ">Login</button></Link>

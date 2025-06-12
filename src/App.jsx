@@ -33,7 +33,7 @@ function App() {
   ];
 
   return (
-    <>
+    <div className="w-full overflow-x-hidden">
       <LoadScript googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
         <BrowserRouter>
           <NavBar />
@@ -45,7 +45,7 @@ function App() {
           <Footer/>
         </BrowserRouter>
       </LoadScript>
-    </>
+    </div>
   );
 }
 
