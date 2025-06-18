@@ -10,8 +10,8 @@ function NumberName({ userName, details }) {
         </div>
 
         <div className="flex gap-5 p-5 justify-center items-center">
-          <button className="bg-white rounded h-7 w-9 px-1 hover:bg-green-400 font-semibold hover:text-white hover:outline-2 hover:outline-green-700"><i class="ri-edit-2-line"></i></button>
-          <button className="bg-white rounded h-7 w-9 hover:bg-red-400 font-semibold hover:text-white hover:outline-2 hover:outline-red-700 px-1"><i class="ri-delete-bin-6-line"></i></button>
+          <button className="bg-white rounded h-7 w-9 px-1 hover:bg-green-400 font-semibold hover:text-green-900 hover:outline-2 hover:outline-green-700"><i class="ri-edit-2-line"></i></button>
+          <button className="bg-white rounded h-7 w-9 hover:bg-red-400 font-semibold hover:text-red-900 hover:outline-2 hover:outline-red-700 px-1"><i class="ri-delete-bin-6-line"></i></button>
         </div>
       </div>
     </>
