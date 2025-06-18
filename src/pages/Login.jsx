@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useFirebase } from "../contexts/firebase";
 
 function Login() {
+  const firebase = useFirebase();
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
+
   
   return (
     <>
@@ -23,6 +28,8 @@ function Login() {
                   type="email"
                   name="email"
                   id="email"
+                  onChange={e=> setEmail(e.target.value)}
+                  value={email}
                   placeholder="Enter your Email here"
                   className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800"
                 />
@@ -44,6 +51,8 @@ function Login() {
                   type="password"
                   name="password"
                   id="password"
+                  onChange={e=>setPassword(e.target.value)}
+                  value={password}
                   placeholder="Enter your Password here"
                   className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800"
                 />
@@ -53,6 +62,9 @@ function Login() {
               <div>
                 <button
                   type="button"
+                  onClick={()=>{
+                    firebase.loginwithEmailAndPassword({email, password})
+                  }}
                   className="w-full px-8 py-3 font-semibold rounded-md  btn-fill-hollow dark:text-gray-50 hover:outline-3 hover:text-black"
                 >
                   Login

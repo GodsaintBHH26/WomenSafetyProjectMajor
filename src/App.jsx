@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { LoadScript } from "@react-google-maps/api";
+import { ToastContainer, Bounce } from "react-toastify";
 import HomePage from "./pages/HomePage";
 import Map from "./pages/map";
 import Contact from "./pages/Contact";
@@ -42,9 +43,22 @@ function App() {
               return <Route path={el.path} element={el.element} />;
             })}
           </Routes>
-          <Footer/>
+          <Footer />
         </BrowserRouter>
       </LoadScript>
+      <ToastContainer
+        position="top-center"
+        autoClose={13}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        transition={Bounce}
+      />
     </div>
   );
 }

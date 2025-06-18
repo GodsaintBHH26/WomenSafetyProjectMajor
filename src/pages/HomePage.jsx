@@ -6,6 +6,7 @@ function HomePage() {
   const pictureLoc = {
     picSos: "/a-women-looking-at-his-watch.jpg",
     picMap: "/a-women-holding-a-phone-with-a-map-app-.jpg",
+    picContact: "/emergency-contacts--add-a-picture-of-women-too-.jpg",
   };
 
   return (
@@ -48,6 +49,10 @@ function HomePage() {
             details="Allows the user to check all the safe and unsafe areas on map to avoid bad situations. The user can determine a whether to take a certain road or not based on these locations on the map."
             pic={pictureLoc.picMap}
           />
+        </Link>
+
+        <Link to='/contact'>
+        <Card title='Contacts' details='The User can set contacts they want to send notifications to when they are in danger.' pic={pictureLoc.picContact} />
         </Link>
       </div>
     </>

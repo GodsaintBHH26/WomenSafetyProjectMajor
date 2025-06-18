@@ -7,7 +7,6 @@ function SignUp() {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
 
-  console.log(firebase);
 
   return (
     <>
