@@ -1,12 +1,18 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useFirebase } from "../contexts/firebase";
 
 function Login() {
   const firebase = useFirebase();
+  const navigate = useNavigate();
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
 
+  useEffect(()=>{
+    if(firebase.user){
+      navigate('/');
+    }
+  })
   
   return (
     <>

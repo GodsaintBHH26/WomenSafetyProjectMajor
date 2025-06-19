@@ -7,17 +7,26 @@ import {
   signOut,
 } from "firebase/auth";
 import { firebaseApp } from "../database/firebase";
-import { getDatabase } from "firebase/database";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  doc,
+  getDocs,
+  updateDoc,
+  deleteDoc,
+} from "firebase/firestore";
 import Notify from "../components/notification";
 // ----------------------------------------------------------------------------------------------
 
 const FirebaseContext = createContext(null);
 const firebaseAuth = getAuth(firebaseApp);
-const firebaseDatabase = getDatabase(firebaseApp);
+const fireStore = getFirestore(firebaseApp);
 
 export const FirebaseProvider = (props) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(undefined);
 
+  // Register the User ----------------------------------------------
   const signUpwithEmailAndPassword = async ({ email, password }) => {
     return createUserWithEmailAndPassword(firebaseAuth, email, password)
       .then((e) => {
@@ -30,6 +39,7 @@ export const FirebaseProvider = (props) => {
       });
   };
 
+  // Login the user --------------------------------------------------
   const loginwithEmailAndPassword = async ({ email, password }) => {
     return signInWithEmailAndPassword(firebaseAuth, email, password)
       .then((e) => {
@@ -42,6 +52,7 @@ export const FirebaseProvider = (props) => {
       });
   };
 
+  // Logout the user --------------------------------------------------
   const logOutUser = async () => {
     return signOut(firebaseAuth)
       .then((e) => {
@@ -54,17 +65,57 @@ export const FirebaseProvider = (props) => {
       });
   };
 
+  // Checks whether the user is logged In or not-----------------------
   useEffect(() => {
-    onAuthStateChanged(firebaseAuth, (user) => {
+    const unsubscribe = onAuthStateChanged(firebaseAuth, (user) => {
       if (user) {
         setUser(user);
-        console.log('Hey', user)
+        console.log("Hey", user.email);
       } else {
         console.log("You are logged out");
         setUser(null);
       }
     });
+    return () => unsubscribe();
   }, []);
+
+  // Adds Contacts for the user ----------------------------------------
+  const createContact = async (name, phone) => {
+    const contactRef = collection(
+      fireStore,
+      `emergency-contacts/${user.uid}/contacts`
+    );
+    try {
+      const result = await addDoc(contactRef, { name, phone });
+      Notify({ message: "Contact Added", option: "details" });
+      console.log(result);
+    } catch (err) {
+      Notify({ message: "Did not add the contact!", option: "error" });
+      console.log(err);
+    }
+  };
+
+  // Checks or Displays the contacts from the database ------------------
+  const getDocument = async () => {
+    const ref = collection(
+      fireStore,
+      "emergency-contacts",
+      user.uid,
+      "contacts"
+    );
+    try {
+      const datDoc = await getDocs(ref);
+      const contactDoc = datDoc.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      console.log(contactDoc);
+      return contactDoc
+    } catch (err) {
+      console.log('Failed to fetch data!', err);
+      return []
+    }
+  };
 
   return (
     <FirebaseContext.Provider
@@ -72,7 +123,9 @@ export const FirebaseProvider = (props) => {
         signUpwithEmailAndPassword,
         loginwithEmailAndPassword,
         logOutUser,
-        user
+        createContact,
+        getDocument,
+        user,
       }}
     >
       {props.children}

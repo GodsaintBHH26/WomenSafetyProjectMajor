@@ -10,7 +10,7 @@ function Logout() {
     onClick={()=>{
         firebase.logOutUser();
     }}
-    ><i class="ri-logout-box-r-line"></i></button>
+    ><i className="ri-logout-box-r-line"></i></button>
     </>
   )
 }
