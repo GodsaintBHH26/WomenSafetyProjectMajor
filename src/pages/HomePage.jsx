@@ -30,32 +30,47 @@ function HomePage() {
         </p>
         <div className="flex gap-5 font-semibold mt-5 z-20">
           <button className="btn-fill-hollow">Download</button>
-          <button className="btn-hollow-fill" onClick={()=>{
-            window.open('https://github.com/GodsaintBHH26/WomenSafetyProjectMajor', '_blank')
-          }}>More info</button>
+          <button
+            className="btn-hollow-fill"
+            onClick={() => {
+              window.open(
+                "https://github.com/GodsaintBHH26/WomenSafetyProjectMajor",
+                "_blank"
+              );
+            }}
+          >
+            More info
+          </button>
         </div>
       </div>
 
-      <div className="w-full h-96 bg-[#E6FEFF] flex justify-center items-center gap-15">
-        <Link>
-          <Card
-            title="SOS"
-            details="Send notifications to your family and close friends along with nearest police station. Also notify all the other user within 50m radius so that they can help you."
-            pic={pictureLoc.picSos}
-          />
-        </Link>
+      <div className="w-full h-96 bg-[#E6FEFF] flex flex-col justify-center items-center gap-5 pt-5">
+        <h2 className="text-black font-bold text-5xl hover:shadow-2xl">Features </h2>
+        <div className="w-full h-96 bg-[#E6FEFF] flex justify-center items-center gap-15">
+          <Link>
+            <Card
+              title="SOS"
+              details="Send notifications to your family and close friends along with nearest police station. Also notify all the other user within 50m radius so that they can help you."
+              pic={pictureLoc.picSos}
+            />
+          </Link>
 
-        <Link to='/maps'>
-          <Card
-            title="Map Features"
-            details="Allows the user to check all the safe and unsafe areas on map to avoid bad situations. The user can determine a whether to take a certain road or not based on these locations on the map."
-            pic={pictureLoc.picMap}
-          />
-        </Link>
+          <Link to="/maps">
+            <Card
+              title="Map Features"
+              details="Allows the user to check all the safe and unsafe areas on map to avoid bad situations. The user can determine a whether to take a certain road or not based on these locations on the map."
+              pic={pictureLoc.picMap}
+            />
+          </Link>
 
-        <Link to='/contact'>
-        <Card title='Contacts' details='The User can set contacts they want to send notifications to when they are in danger.' pic={pictureLoc.picContact} />
-        </Link>
+          <Link to="/contact">
+            <Card
+              title="Contacts"
+              details="The User can set contacts they want to send notifications to when they are in danger."
+              pic={pictureLoc.picContact}
+            />
+          </Link>
+        </div>
       </div>
     </>
   );
