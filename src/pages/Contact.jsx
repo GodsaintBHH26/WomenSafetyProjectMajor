@@ -31,7 +31,17 @@ function Contact() {
             <div className="flex flex-col w-full items-center h-80 overflow-auto mb-5">
               {contact.length > 0 ? (
                 contact.map((e) => (
-                  <NumberName userName={e.name} phone={e.phone} />
+                  <NumberName
+                    userName={e.name}
+                    phone={e.phone}
+                    contactID={e.id}
+                    onDelete={() => {
+                      firebase.getDocument().then(setContact);
+                    }}
+                    onUpdate={() => {
+                      firebase.getDocument().then(setContact);
+                    }}
+                  />
                 ))
               ) : (
                 <>

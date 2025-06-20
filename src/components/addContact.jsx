@@ -7,7 +7,6 @@ function AddContact(props) {
   const [phone, setPhone] = useState('');
   const [showForm, setShowForm] = useState(false);
 
-  const handleAddContact = ({ cid, phone }) => {};
 
   return (
     <>

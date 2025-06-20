@@ -30,7 +30,9 @@ function HomePage() {
         </p>
         <div className="flex gap-5 font-semibold mt-5 z-20">
           <button className="btn-fill-hollow">Download</button>
-          <button className="btn-hollow-fill">More info</button>
+          <button className="btn-hollow-fill" onClick={()=>{
+            window.open('https://github.com/GodsaintBHH26/WomenSafetyProjectMajor', '_blank')
+          }}>More info</button>
         </div>
       </div>
 

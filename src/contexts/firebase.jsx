@@ -110,13 +110,52 @@ export const FirebaseProvider = (props) => {
         ...doc.data(),
       }));
       console.log(contactDoc);
-      return contactDoc
+      return contactDoc;
     } catch (err) {
-      console.log('Failed to fetch data!', err);
-      return []
+      console.log("Failed to fetch data!", err);
+      return [];
     }
   };
 
+  // Delete a contact from the database ---------------------------------
+  const deleteDocument = async (contID) => {
+    const ref = doc(
+      fireStore,
+      "emergency-contacts",
+      user.uid,
+      "contacts",
+      contID
+    );
+
+    try {
+      await deleteDoc(ref);
+      Notify({ message: "Contact Deleted successfully", option: "warning" });
+    } catch (err) {
+      console.log("Error occored - ", err);
+      Notify({ message: "An Error occurred", option: "error" });
+    }
+  };
+
+  // Update an existing contact from the database -------------------------
+  const updateDocument = async (contID, updatedData) => {
+    const ref = doc(
+      fireStore,
+      "emergency-contacts",
+      user.uid,
+      "contacts",
+      contID
+    );
+
+    try {
+      await updateDoc(ref, updatedData);
+      Notify({ message: "Contact updated Successfully!", option: "success" });
+    } catch (err) {
+      console.log("Error -", err);
+      Notify({ message: "An Error occured!", option: "error" });
+    }
+  };
+
+  // -----------------------------------------------------------------------
   return (
     <FirebaseContext.Provider
       value={{
@@ -125,6 +164,8 @@ export const FirebaseProvider = (props) => {
         logOutUser,
         createContact,
         getDocument,
+        deleteDocument,
+        updateDocument,
         user,
       }}
     >
